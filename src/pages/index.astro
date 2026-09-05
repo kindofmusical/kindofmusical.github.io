@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+    <!-- Hero Section -->
+    <div class="relative bg-kom-navy overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover object-top opacity-40" src="/img/home/Copy of 291A7567final.webp" alt="" />
+            <div class="absolute inset-0 bg-gradient-to-t from-kom-navy via-kom-navy/60 to-transparent"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <img id="hero-logo" src="/img/logos/new%20logo_2.webp" alt="kind of musical" class="w-48 md:w-64 mb-8 drop-shadow-2xl transition-all duration-300 will-change-transform" />
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="py-20 bg-white text-kom-navy">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-lg text-gray-800 leading-relaxed">
+            <p>
+                We are kind of musical - a non-professional, English-speaking musical group based in Berlin. Our vibrant team is made up of seasoned performers and creatives, as well as newcomers embarking on their first musical theater experiences. No matter our backgrounds, we are brought together by a shared passion - making ambitious, thought-provoking art with people who make the process every bit as remarkable as the performances.
+            </p>
+        </div>
+    </section>
+
+    <!-- Photos -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <img src="/img/home/0A6A9605.webp" alt="" class="zoomable-image cursor-pointer rounded-xl shadow-lg w-full h-64 object-cover hover:scale-[1.02] hover:opacity-95 transition-all duration-300" />
+                <img src="/img/home/0A6A9953.webp" alt="" class="zoomable-image cursor-pointer rounded-xl shadow-lg w-full h-64 object-cover hover:scale-[1.02] hover:opacity-95 transition-all duration-300" />
+                <img src="/img/home/Copy of 291A7591final.webp" alt="" class="zoomable-image cursor-pointer rounded-xl shadow-lg w-full h-64 object-cover hover:scale-[1.02] hover:opacity-95 transition-all duration-300" />
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function setupLogoMorph() {
+            const heroLogo = document.getElementById('hero-logo');
+            const navbarLogo = document.getElementById('navbar-logo');
+            if (!heroLogo || !navbarLogo) return;
+
+            let ticking = false;
+
+            function updateOnScroll() {
+                const scrollY = window.scrollY;
+                const threshold = 130;
+
+                if (scrollY < threshold) {
+                    const progress = scrollY / threshold;
+                    // Smoothly fade and elevate hero logo
+                    heroLogo.style.opacity = `${Math.max(0, 1 - progress * 1.2)}`;
+                    heroLogo.style.transform = `translateY(-${progress * 30}px) scale(${1 - progress * 0.15})`;
+
+                    // Keep navbar logo tucked away
+                    navbarLogo.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+                    navbarLogo.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                } else {
+                    // Scrolled down: hero logo invisible, navbar logo emerges
+                    heroLogo.style.opacity = '0';
+                    heroLogo.style.transform = 'translateY(-30px) scale(0.85)';
+
+                    navbarLogo.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+                    navbarLogo.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateOnScroll);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateOnScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupLogoMorph);
+        } else {
+            setupLogoMorph();
+        }
+        document.addEventListener('astro:page-load', setupLogoMorph);
+    </script>
+</Layout>

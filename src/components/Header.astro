@@ -1,0 +1,94 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the leading slash
+const isHome = currentPath === '' || currentPath === '/';
+
+const navLinks = [
+    { name: 'Home', path: '' },
+    { name: 'About Us', path: 'about' },
+    { name: 'Shows', path: 'shows' },
+    { name: 'Contact', path: 'contact' },
+];
+---
+
+<header class="bg-kom-navy text-white sticky top-0 z-50 border-b border-kom-blue shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a 
+                    href="/" 
+                    id="navbar-logo"
+                    class={`flex items-center group py-2 transition-all duration-300 transform ${
+                        isHome ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0 pointer-events-auto'
+                    }`}
+                >
+                    <img class="h-9 w-auto object-contain transition-transform group-hover:scale-105" style="height: 36px; max-height: 36px; width: auto;" src="/img/logos/logo-navbar.webp?v=4" alt="kind of musical" />
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-6">
+                    {navLinks.map(link => (
+                        <a 
+                            href={`/${link.path}`} 
+                            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                                currentPath === link.path || (currentPath === '' && link.path === '') 
+                                ? 'bg-kom-blue text-white' 
+                                : 'text-gray-300 hover:bg-kom-blue/50 hover:text-white'
+                            }`}
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+                    <a href="https://www.yesticket.org/events/en/kind-of-musical/" target="_blank" rel="noopener noreferrer" class="bg-kom-orange-dark hover:bg-kom-orange-light text-white px-4 py-2 rounded-md text-sm font-bold shadow-md transition-colors">
+                        Tickets
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Mobile menu button (Simplified, you can add JS for toggling later) -->
+            <div class="md:hidden">
+                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-kom-blue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-btn">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Icon when menu is closed -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-kom-navy border-t border-kom-blue">
+            {navLinks.map(link => (
+                <a 
+                    href={`/${link.path}`} 
+                    class={`block px-3 py-2 rounded-md text-base font-medium ${
+                        currentPath === link.path || (currentPath === '' && link.path === '') 
+                        ? 'bg-kom-blue text-white' 
+                        : 'text-gray-300 hover:bg-kom-blue/50 hover:text-white'
+                    }`}
+                >
+                    {link.name}
+                </a>
+            ))}
+            <a href="https://www.yesticket.org/events/en/kind-of-musical/" target="_blank" rel="noopener noreferrer" class="block bg-kom-orange-dark text-white px-3 py-2 rounded-md text-base font-bold text-center mt-4">
+                Tickets
+            </a>
+        </div>
+    </div>
+</header>
+
+<script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    }
+</script>
