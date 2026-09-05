@@ -3,6 +3,72 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Shows">
+    <Fragment slot="head">
+        <script type="application/ld+json">
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "TheaterEvent",
+                "name": "URINETOWN THE MUSICAL",
+                "startDate": "2025-10-02T19:00:00+02:00",
+                "endDate": "2025-10-10T22:00:00+02:00",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                  "@type": "Place",
+                  "name": "Theatre Pool Berlin",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Berlin",
+                    "addressCountry": "DE"
+                  }
+                },
+                "description": "The triple Tony Award-winning musical comes to Berlin! Urinetown is set in a dystopian, not-so-distant-future, where a catastrophic water shortage has led to a ban on private toilets.",
+                "offers": {
+                  "@type": "Offer",
+                  "url": "https://www.yesticket.org/events/en/kind-of-musical/",
+                  "availability": "https://schema.org/InStock"
+                },
+                "performer": {
+                  "@type": "PerformingGroup",
+                  "name": "kind of musical"
+                },
+                "organizer": {
+                  "@type": "Organization",
+                  "name": "kind of musical",
+                  "url": "https://kindofmusical.com"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "TheaterEvent",
+                "name": "The Guy Who Didn't Like Musicals",
+                "startDate": "2025-04-04T19:00:00+02:00",
+                "endDate": "2025-04-12T22:00:00+02:00",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "location": {
+                  "@type": "Place",
+                  "name": "Theatre Pool Berlin",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Berlin",
+                    "addressCountry": "DE"
+                  }
+                },
+                "description": "Our debut production. Performed April 4–6 and 11–12, 2025 at Theatre Pool Berlin.",
+                "performer": {
+                  "@type": "PerformingGroup",
+                  "name": "kind of musical"
+                },
+                "organizer": {
+                  "@type": "Organization",
+                  "name": "kind of musical",
+                  "url": "https://kindofmusical.com"
+                }
+              }
+            ]
+        </script>
+    </Fragment>
 
     <!-- Main Content -->
     <section class="py-16 bg-white text-gray-800">
