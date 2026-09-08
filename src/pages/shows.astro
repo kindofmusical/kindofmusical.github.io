@@ -75,18 +75,21 @@ import Layout from '../layouts/Layout.astro';
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="prose prose-lg mx-auto text-gray-800">
                 <div class="mb-8">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold font-heading text-kom-navy tracking-tight mb-2">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold font-heading text-kom-navy tracking-tight mb-6">
                         Upcoming Shows
                     </h1>
-                    <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
-                        <h2 class="text-2xl sm:text-3xl font-bold font-heading text-kom-blue tracking-tight">
-                            URINETOWN THE MUSICAL
-                        </h2>
+                    <div class="flex flex-wrap items-center justify-between gap-6 mb-4">
+                        <h2 class="sr-only">URINETOWN THE MUSICAL</h2>
+                        <img 
+                            src="/img/urinetown/urinetown_logo.webp" 
+                            alt="URINETOWN THE MUSICAL" 
+                            class="zoomable-image cursor-pointer w-full max-w-md sm:max-w-lg md:max-w-xl h-auto object-contain hover:scale-[1.02] transition-all duration-300" 
+                        />
                         <a 
                             href="https://www.yesticket.org/events/en/kind-of-musical/" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="inline-flex items-center px-5 py-2.5 rounded-md font-bold text-white bg-kom-orange-dark hover:bg-kom-orange-light shadow-md hover:shadow-lg transition-all duration-200"
+                            class="inline-flex items-center px-5 py-2.5 rounded-md font-bold text-white bg-kom-orange-dark hover:bg-kom-orange-light shadow-md hover:shadow-lg transition-all duration-200 shrink-0"
                         >
                             Tickets
                         </a>
@@ -115,6 +118,11 @@ import Layout from '../layouts/Layout.astro';
                     <a href="https://www.yesticket.org/events/en/kind-of-musical/" target="_blank" rel="noopener noreferrer" class="text-kom-blue underline font-bold hover:text-kom-orange-dark">
                         kind of musical from Berlin Tickets and vouchers for Amateurtheater order
                     </a>
+                </div>
+
+                <!-- Urinetown Visuals -->
+                <div class="my-12 flex justify-center">
+                    <img src="/img/urinetown/urinetown_poster.webp" class="zoomable-image cursor-pointer rounded-xl shadow-lg w-full max-w-sm object-contain hover:scale-[1.02] transition-all duration-300" alt="Urinetown Poster" />
                 </div>
 
                 <p class="mb-16">
